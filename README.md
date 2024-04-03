@@ -9,10 +9,10 @@
 - Run `docker exec -it app_container bash` to pass into container
 - Run `composer install`
 
-## Settings variables in .env
-- LOG_DEFAULT: Default log module
-- LOG_MAIL: mail for sending log via Mail module
-- LOGGERS: array of available loggers. If logger does not exist exception will be thrown
+## Settings variables in config/custom.php
+- log_default: Default log module
+- log_email: mail for sending log via Mail module
+- loggers: array of available loggers. If logger does not exist exception will be thrown
 
 ## Check functional
 - http://localhost:8000/log : Sends a log message to the default logger
