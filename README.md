@@ -6,6 +6,8 @@
 
 ## Installation:
 - Run `docker-compose up -d` to build a container
+- Run `docker exec -it app_container bash` to pass into container
+- Run `composer install`
 
 ## Settings variables in .env
 - LOG_DEFAULT: Default log module
