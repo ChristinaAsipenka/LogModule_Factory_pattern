@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Services\LoggerService;
+use Mockery\Exception;
 
 class LoggerController extends Controller
 {
@@ -18,7 +19,13 @@ class LoggerController extends Controller
     public function log()
     {
         $loggerType = \config('custom.log_default');
-        $this->loggerService->setType($loggerType);
+
+        try{
+            $this->loggerService->setType($loggerType);
+        }catch (Exception $e){
+            echo $e->getMessage();
+        }
+
         $this->loggerService->send('Send message by default logger');
     }
 
@@ -29,7 +36,12 @@ class LoggerController extends Controller
      */
     public function logTo(string $type)
     {
-        $this->loggerService->sendByLogger('Message sent by specific logger', $type);
+        try{
+            $this->loggerService->sendByLogger('Message sent by specific logger', $type);
+        }catch (Exception $e){
+            echo $e->getMessage();
+        }
+
     }
 
     /**
@@ -40,7 +52,13 @@ class LoggerController extends Controller
         $loggers = \config('custom.loggers');
 
         foreach ($loggers as $logger) {
-            $this->loggerService->setType($logger);
+            
+            try{
+                $this->loggerService->setType($logger);
+            }catch (Exception $e){
+                echo $e->getMessage();
+            }
+
             $loggerType = $this->loggerService->getType();
             $this->loggerService->send('Send message by ' . $loggerType . 'logger');
         }
